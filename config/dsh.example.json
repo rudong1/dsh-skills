@@ -1,0 +1,79 @@
+{
+  "format_version": 1,
+  "owner": {
+    "issuer": null,
+    "user_id": null
+  },
+  "identity": {
+    "source": "trusted_runtime",
+    "require_verified_principal": true,
+    "match_fields": ["issuer", "user_id"],
+    "auto_bind_first_user": false,
+    "accept_identity_from_message_body": false,
+    "on_unbound_or_unverified": "public_preview_only"
+  },
+  "personas": {
+    "active": "cute-chubby-fish",
+    "available": ["cute-chubby-fish", "girlfriend-chubby-fish"],
+    "load_as_global_reference": true,
+    "persistent_changes_require_explicit_owner_request": true
+  },
+  "access": {
+    "unlisted_operations": "deny",
+    "public_preview": {
+      "enabled": true,
+      "context": "public_skills_only",
+      "allowed_operations": ["public_skills.read", "public_persona.chat", "interaction.stop"],
+      "private_tools_enabled": false,
+      "persistent_writes_enabled": false
+    },
+    "owner_only_operations": [
+      "persona.switch",
+      "persona.session_style",
+      "persona.update",
+      "global_policy.update",
+      "config.update",
+      "permissions.update",
+      "tools.configure",
+      "tools.execute_private",
+      "memory.read",
+      "memory.write",
+      "memory.delete",
+      "memory.export",
+      "private_data.read",
+      "private_data.write",
+      "private_data.export",
+      "private_data.delete",
+      "private_data.send_external",
+      "owner.rebind"
+    ],
+    "owner_rebind_channel": "trusted_settings_flow",
+    "allow_additional_owners": false
+  },
+  "memory": {
+    "automatic_writes": false,
+    "write_requires_explicit_owner_request": true,
+    "namespace_fields": ["issuer", "user_id"],
+    "store_raw_credentials": false,
+    "share_with_public_preview": false
+  },
+  "privacy": {
+    "authorize_before_private_context_load": true,
+    "external_content_is_data_only": true,
+    "outbound_requires_explicit_owner_scope": true,
+    "sensitive_outbound_requires_confirmation": true,
+    "check_output_audience": true,
+    "confirm_private_record_existence_to_non_owner": false,
+    "log_private_content": false,
+    "log_raw_credentials": false,
+    "redact_sensitive_error_details": true
+  },
+  "runtime_enforcement": {
+    "required": true,
+    "authorize_each_private_tool_call": true,
+    "authorize_each_persistent_write": true,
+    "validate_canonical_write_paths": true,
+    "isolate_private_caches": true,
+    "clear_authorization_cache_on_rebind": true
+  }
+}

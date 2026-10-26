@@ -1,0 +1,7 @@
+# Local identity bindings and private runtime data. Commit only the empty template.
+/config/dsh.local.json
+/private/
+/runtime/
+/.env
+/.env.*
+!/.env.example
